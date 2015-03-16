@@ -1,6 +1,8 @@
 # Installation
 These scripts require kOS to run. kOS can be downloaded here:
+
 http://forum.kerbalspaceprogram.com/threads/68089-0-90-kOS-Scriptable-Autopilot-System-v0-16-2-2015-2-23
+
 Copy all .ks files to ~/Kerbal Space Program/Ships/Script/
 
 #What does this do?
