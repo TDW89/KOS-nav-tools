@@ -29,7 +29,7 @@ RUN gs_destination(ship:geoposition,(-1)*ship:bearing,1000,body:radius).
 ```
 to give you the latlng() position of a point 1km ahead of you and letting you query it for terrain height. So no more crashing into that cliff because you can only track changes in terrain as you pass over it.
 
-#gs_distance.ks
+##gs_distance.ks
 kOS lets you query the distance to a latlng() position at the moment but it gives you the separation of the points in 3d space so if you ask for the distance to a point directly opposite you on Kerbin it will give tell you the distance is Kerbins diameter. This will give you the surface distance between 2 points. So will tell you the distance is half Kerbins circumference. This is useful if you want to know how far you will actually have to go and how long it will take you at your current surface speed.
 It can also be used between a 2 arbitrary points not just your vessel's position and another so for lists of way-points you could use something like:
 ```
