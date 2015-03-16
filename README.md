@@ -18,11 +18,11 @@ All of these scripts need to be run with their arguments (commented in each scri
 Tip: When flying a plane using body:radius+ship:altitude will give you a more accurate result for scripts that ask for a radius.
 
 
-#gs_bearing.ks
+##gs_bearing.ks
 Similar to an inclined orbit the baring you are travelling on will change when using great circles. This equation will give you the initial bearing along the great circle path from point 1 to point 2.
 Not overly useful when run once but by repeatedly running this with your current position as point 1 you will get a continuously updating bearing along the shortest path to point 2.
 
-#gs_destination.ks
+##gs_destination.ks
 This will tell you the geo-position of a point along a great circle path given a starting position, distance and initial bearing. It can be used for checking the layout of terrain up ahead using:
 ```
 RUN gs_destination(ship:geoposition,(-1)*ship:bearing,1000,body:radius).
@@ -44,7 +44,7 @@ PRINT distance.
 ```
 to give the distance total distance of your current rout.
 
-#gs_midpoint.ks
+##gs_midpoint.ks
 Gives you the midpoint between point 1 and 2 along a great circle path. This is not as obviously useful as the others but I needed it for something I am working on so threw it in as well.
 
 #Creds
