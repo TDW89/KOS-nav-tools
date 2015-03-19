@@ -12,4 +12,4 @@ set resultL to result.
 set resultAproach to arctan(incline*(resultF:terrainheight-resultB:terrainheight)/seperation).
 set resultTangent to arctan(incline*(resultR:terrainheight-resultL:terrainheight))/(seperation).
 set resultSlope to sqrt(resultAproach^2+resultTangent^2).
-set resultBearing to mod(360+bearing+arctan2(resultAproach,resultTangent),360).
+set resultBearing to mod(360+bearing+arctan2(resultTangent,resultAproach),360).
