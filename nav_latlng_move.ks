@@ -8,9 +8,12 @@ set arrow:color to red.
 set arrow:show to true.
 
 clearscreen.
-print "Current position: ".
-Print "Move by: ".
+print "Current position:".
+Print "Move by:".
 
+on ag10 {
+ set exit to true.
+}.
 on ag2 {
  run gs_destination(p1,180,move,body:radius+p1:terrainheight).
  set p1 to result.
@@ -23,7 +26,7 @@ on ag4 {
  set p1 to result.
 }.
 on ag5 {
- set exit to true.
+ log p1 to point_log.
 }.
 on ag6 {
  run gs_destination(p1,90,move,body:radius+p1:terrainheight).
@@ -50,4 +53,6 @@ Until exit {
  set arrow:start to start.
  set arrow:vec to vec.
  set arrow:lable to p1.
+ print p1+"               " at (0,18).
+ print move+"m              " at (1,9).
 }.
