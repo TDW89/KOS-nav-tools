@@ -1,0 +1,111 @@
+clearscreen.
+set IPU to config:IPU.
+print "Your current IPU is "+IPU.
+Print "To run this efectively the".
+print "IPU must be set to 2000.".
+print "You can press 0 at any time".
+print "to exit the script and".
+print "reset your IPU.".
+print "".
+Print "To cancel Press 0.".
+Print "To confirm Press 1.".
+
+wait until ag10 or ag1.
+if ag1 {
+set config:IPU to 2000.
+on ag10 {
+ set exit to true.
+}.
+set fov to 90.
+set rangeSymbol to list().
+rangeSymbol:add(".").
+rangeSymbol:add("-").
+rangeSymbol:add("=").
+rangeSymbol:add("#").
+
+set twidth to 0.
+set theight to 0.
+set exit to false.
+
+until exit {
+  clearscreen.
+  set twidth to terminal:width.
+  set theight to terminal:height.
+  set colomn to floor(90/twidth).
+  set row to floor(90/theight).
+
+  set thorizen to round(theight/2).
+
+  print ">" at (0,thorizen).
+  set index to 1.
+  until index = round(twidth) -1 {
+   print "-" at (index,thorizen).
+   set index to index+1.
+  }.
+  print "+" at (round(twidth/2),thorizen).
+  print "<" at (twidth-1,thorizen).
+  print "deg" at (round(twidth/2)+1,thorizen-1).
+  Print "True Alt:" at (round(twidth/2)-9,0).
+  print "Radar Alt:" at (round(twidth/2)-10,1).
+  set p1 to ship:geoposition.
+  set bearing to round(mod(360+((-1)*ship:bearing),360)).
+  if bearing >= 100 {
+   set blength to 3.
+  }
+  else if bearing >= 10 {
+   set blength to 2.
+  }
+  else {
+   set blength to 1.
+  }.
+  print "  "+bearing at (round(twidth/2)-1-blength,thorizen-1).
+  set trueAlt to ship:altitude.
+  If trueAlt >= 1000 {
+   set trueAltUnit to "km   ".
+   set trueAltMultiplyer to -3.
+  }
+  else {
+   set trueAltUnit to "m   ".
+   set trueAltMultiplyer to 0.
+  }.
+  set radarAlt to trueAlt-p1:terrainheight.
+  if radarAlt >= 1000 {
+   set radarAltUnit to "km   ".
+   set radarAltMultiplyer to -3.
+  }
+  else if radarAlt >= 0 {
+   set radarAltUnit to "m   ".
+   set radarAltMultiplyer to 0.
+  }
+  else {
+   clearscreen.
+   print "Wow you hit the ground so hard you went right through it.".
+   print "Jeb would be proud!".
+  }.
+  print round(trueAlt*10^trueAltMultiplyer,1)+trueAltUnit at (round(twidth/2)+1,0).
+  print round(radarAlt*10^radarAltMultiplyer,1)+radarAltUnit at (round(twidth/2)+1,1).
+  set dist to list().
+  set index to rangesymbol:length-1.
+  for symbol in rangeSymbol {
+   dist:add(trueAlt*tan((90-fov/2)+index*(90-fov/2)/rangesymbol:length)).
+   set index to index -1.
+  }.
+  set rangeNo to 0.
+  for range in dist {
+   set index to 0.
+   until index = twidth-1 {
+    run gs_destination(p1,bearing+(index-twidth/2)*round(fov/twidth),range,body:radius).
+    set count to 0.
+    until count = ceiling((round(theight/2)*max(1,result:terrainheight))/trueAlt){
+     set count to count+1.
+     if count <> round(theight/2) {
+      print rangesymbol[rangeNo] at (index,theight-count).
+     }.
+    }.
+    set index to index+1.
+   }.
+   set rangeNo to rangeNo+1.
+  }.
+ }.
+ set config:IPU to IPU.
+}.
