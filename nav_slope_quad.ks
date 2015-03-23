@@ -1,4 +1,4 @@
-declare parameter p1,bearing,seperation,incline.
+declare parameter p1,bearing,seperation,incline. //position,bearing(only necacery for getting slope along and at 90deg to heading, otherwise set to 0.),spacing of points,1=uphillhearing -1 = downhill bearing.
 
 run gs_destination(p1,bearing,seperation,body:radius+p1:terrainheight).
 set resultF to result.
