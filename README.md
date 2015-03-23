@@ -17,6 +17,7 @@ This is useful because these circles are the most direct rout between any two po
 All of these scripts need to be run with their arguments (commented in each script). They each return the variable `result` and the only other variables they use are declared parameters. This is done to minimise conflicts with other scripts.
 Tip: When flying a plane using body:radius+ship:altitude will give you a more accurate result for scripts that ask for a radius.
 
+#scripts.
 
 ##gs_bearing.ks
 Similar to an inclined orbit the baring you are travelling on will change when using great circles. This equation will give you the initial bearing along the great circle path from point 1 to point 2.
@@ -46,6 +47,30 @@ to give the distance total distance of your current rout.
 
 ##gs_midpoint.ks
 Gives you the midpoint between point 1 and 2 along a great circle path. This is not as obviously useful as the others but I needed it for something I am working on so threw it in as well.
+
+##nav_latlng_move.ks
+This is for tweaking geopositions manually. It places an arrow at the declared latlng and then allows you to move it around using action groups. (The action groups are set up with the intention that they are mapped to the number pad).
+0 - exits the script.
+2 - moves the arrow south.
+3 - multiplies the movement by 0.1 (eg m -> cm -> mm).
+4 - moves west.
+5 - logs the position to a file.
+6 - moves east.
+8 - moves north.
+9 - multiplies the movement by 10 (eg mm -> cm -> m).
+NOTE: While changing to map view will increase the size of the arrows. Action groups don’t work so you cant move it.
+
+##nav_slope_quad.ks
+This gives the slope of a point and its bearing by sampling 4 points around it in a diamond shape.
+By declaring a bearing (otherwise just use 0) you can get the components of the slope along that bearing and at right angles to it. Also by declaring the incline as 1 it will give you a bearing up the slope and -1 will give you down the slope.
+By combining this with `gs_destination.ks` it is possible to have the script follow the slope up or down hill to find the flat landing location either at the top of the hill or at the bottom of a gully. (This is not necessarily the closest flat area but it is relatively easy to find by script).
+
+##nav_slope_tri.ks
+This works the same way as `nav_slope_quad.ks` except that it speeds up the calculation by using 3 points. The one you declared and 2 others 45deg either side of the declared bearing.
+This if the other script lags too mutch try this one. It is faster but the centre of the sample area is not the point you gave it but just past it.
+
+##demo_flight.ks
+This was me playing around. It doesn’t do anything useful automation wise but. It shows the relative height of the terrain in front of you as you fly around.
 
 #Creds
 Nivekk for creating kOS and Erendrake and Steve Mading for maintaining and advancing it to where it is today.
