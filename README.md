@@ -6,7 +6,9 @@ http://forum.kerbalspaceprogram.com/threads/68089-0-90-kOS-Scriptable-Autopilot-
 Copy all .ks files to ~/Kerbal Space Program/Ships/Script/
 
 #What does this do?
-*First off these scripts don't do a lot on their own. They are intended to be a tool/equation set for script writers to call from within their own scripts (although there is nothing stopping you just running them if you want).
+*First off these scripts don't do a lot on their own. 
+*They are intended to be a tool/equation set for 
+``script`` writers to call from within their own scripts (although there is nothing stopping you just running them if you want).
 
 These scripts make use of Great Circle equations, which I am about to do a rubbish job of explaining. A Great Circle is the circle created by on the surface of a sphere by any plane that passes through it's centre. The equator is on example of this as are the lines of longitude around the earth.
 For more information google is your friend :-P
